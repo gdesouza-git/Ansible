@@ -1,0 +1,6 @@
+---
+- hosts: all
+  tasks:
+    - name: Exibir mensagem
+      debug:
+        msg: Funcionando
