@@ -2,10 +2,13 @@
   hosts: vm-003.localdomain
   become: yes
   tasks:
+    - name: Upgrade de pcotes
+      apt:
+        name: "*"
+        state: latest 
     - name: Instalar ultima versão do Apache
       apt:
         name: apache2
-        name: ifconfig
         update_cache: yes
         state: present
     - name: Iniciar httpd
