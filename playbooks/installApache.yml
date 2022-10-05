@@ -1,8 +1,8 @@
 - name: Instalar Apache
-  hosts: vm-003.localdomain
+  hosts: all
   become: yes
   tasks:
-    - name: Upgrade de pcotes
+    - name: Upgrade de pacotes
       apt:
         name: "*"
         state: latest 
