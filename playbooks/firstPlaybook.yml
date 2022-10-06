@@ -1,13 +1,25 @@
-- name: Network Getting Started First Playbook
-  connection: ansible.netcommon.network_cli
-  gather_facts: false
+- name: Ansible Playbook to Install and Setup Apache on Ubuntu
   hosts: all
+  become: yes
   tasks:
-
-    - name: Get config for VyOS devices
-      vyos.vyos.vyos_facts:
-        gather_subset: all
-
-    - name: Display the config
-      debug:
-        msg: "The hostname is {{ ansible_net_hostname }} and the OS is {{ ansible_net_version }}"
+    - name: Install latest version of Apache
+      apt: name=apache2 update_cache=yes state=latest
+ 
+    - name: Create document root for domain configured in host variable
+      file:
+        path: "/var/www/{{ http_host }}"
+        state: directory
+        owner: www-data
+        group: www-data
+        mode: '0755'
+ 
+    - name: Copy your index file
+      template:
+        src: "files/index-template.html"
+        dest: "/var/www/{{ http_host }}/index.html"
+ 
+    - name: Set up virtuahHost
+      template:
+        src: "files/apache-template.conf"
+        dest: "/etc/apache2/sites-available/{{ http_conf }}"
+ 
