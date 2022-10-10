@@ -1,0 +1,7 @@
+- name: Create user on linux
+  hosts: all
+  become: yes
+  gather_facts: false
+  vars:
+    - user: "{{ morpheus['customOptions']['username'] }}"
+    - password: "{{ lookup('cypher','secret=ansible/gustavo') }}"
