@@ -1,13 +1,11 @@
----
-- hosts: all
-  become: true
-
+- name: Create user on a linux server
+  hosts: remote-server
+  become: yes
+  gather_facts: false
+  vars:
+    - user: "{{ morpheus['customOptions']['username'] }}"
+    - password: "{{ lookup('cypher','secret=ansible/gustavo') }}"
   tasks:
-    - name: Create user on linux
-      gather_facts: false
-      vars:
-        - user: "{{ morpheus['customOptions']['username'] }}"
-        - password: "{{ lookup('cypher','secret=ansible/gustavo') }}"
     - name: Create a login user
       user:
         name: "{{ user }}"
