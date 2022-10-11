@@ -8,5 +8,4 @@
   tasks:
     - name: Exibir mensagem
       debug:
-        msg: {{user}}
-        msg: {{password}}
+        msg: "User: '{{ user }}' password: '{{ password }}'"
