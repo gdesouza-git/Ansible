@@ -6,10 +6,7 @@
     - user: "{{ morpheus['customOptions']['username'] }}"
     - password: "{{ lookup('cypher','secret=secret/ansible') }}"
   tasks:
-    - name: Create a login user
-      user:
-        name: "{{ user }}"
-        password: "{{ password }}"
-        groups:
-          - wheel
-        state: present
+    - name: Exibir mensagem
+      debug:
+        msg: {{user}}
+        msg: {{password}}
