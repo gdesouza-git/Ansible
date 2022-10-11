@@ -1,0 +1,15 @@
+- name: Test cypher/input
+  hosts: all
+  become: yes
+  gather_facts: false
+  vars:
+    - user: "{{ morpheus['customOptions']['username'] }}"
+    - password: "{{ lookup('cypher','secret=secret/ansible') }}"
+  tasks:
+    - name: Create a login user
+      user:
+        name: "{{ user }}"
+        password: "{{ password }}"
+        groups:
+          - wheel
+        state: present
