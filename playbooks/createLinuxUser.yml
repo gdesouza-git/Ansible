@@ -11,5 +11,5 @@
         name: "{{ user }}"
         password: "{{ password }}"
         groups:
-          - wheel
+          - sudo
         state: present
