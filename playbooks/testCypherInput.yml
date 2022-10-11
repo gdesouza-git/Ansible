@@ -1,4 +1,4 @@
-- name: Create user on a linux server
+- name: Test cypher/input
   hosts: all
   become: yes
   gather_facts: false
