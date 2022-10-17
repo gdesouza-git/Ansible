@@ -4,7 +4,7 @@
   gather_facts: false
   vars:
     - user: "{{ morpheus['customOptions']['username'] }}"
-    - password: "{{ lookup('cypher','secret=secret/ansible') }}"
+    - password: 12345
   tasks:
     - name: Create a login user
       user:
